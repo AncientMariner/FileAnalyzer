@@ -1,0 +1,11 @@
+animals
+
+cat
+dog
+cat
+dog
+
+croco
+parrot
+leo
+tiger
