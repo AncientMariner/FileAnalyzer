@@ -5,11 +5,11 @@ import java.util.TreeMap;
 public class FileInternalProcessing {
     private String fileName;
     private String delimiterForSeparatingWords = "[ .,;:?!\\|\\-~'\\\\\"*/\\^()_+=@#$%&*`{}\\[\\]]+";
-    private String[] wordInLine;
+    private String[] wordsInLine;
     private Map<String, Integer> wordsMap = new TreeMap<String, Integer>();
 
-    public String[] getWordInLine() {
-        return wordInLine;
+    public String[] getWordsInLine() {
+        return wordsInLine;
     }
 
     public FileInternalProcessing(String fileName) {
@@ -38,12 +38,12 @@ public class FileInternalProcessing {
     private void readFileLineByLine(BufferedReader br) throws IOException {
         String line;
         while ((line = br.readLine()) != null) {
-            wordInLine = line.split(delimiterForSeparatingWords);
-            for (int i =0; i < wordInLine.length; i ++) {
-                if(wordsMap.containsKey(wordInLine[i])) {
-                    wordsMap.put(wordInLine[i], wordsMap.get(wordInLine[i]) + 1);
+            wordsInLine = line.split(delimiterForSeparatingWords);
+            for (int i =0; i < wordsInLine.length; i++) {
+                if(wordsMap.containsKey(wordsInLine[i])) {
+                    wordsMap.put(wordsInLine[i], wordsMap.get(wordsInLine[i]) + 1);
                 } else {
-                    wordsMap.put(wordInLine[i], 1);
+                    wordsMap.put(wordsInLine[i], 1);
                 }
             }
         }

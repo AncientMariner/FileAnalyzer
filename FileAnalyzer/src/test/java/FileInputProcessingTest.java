@@ -19,9 +19,9 @@ public class FileInputProcessingTest {
     public void readLineTest() throws IOException {
         fileInternalProcessing.workWithFile();
 
-        assertEquals(fileInternalProcessing.getWordInLine()[0], "leo");
-        assertEquals(fileInternalProcessing.getWordInLine()[1], "tiger");
-        assertEquals(fileInternalProcessing.getWordInLine()[2], "cat");
-        assertEquals(fileInternalProcessing.getWordInLine()[3], "dog");
+        assertEquals(fileInternalProcessing.getWordsInLine()[0], "leo");
+        assertEquals(fileInternalProcessing.getWordsInLine()[1], "tiger");
+        assertEquals(fileInternalProcessing.getWordsInLine()[2], "cat");
+        assertEquals(fileInternalProcessing.getWordsInLine()[3], "dog");
     }
 }
