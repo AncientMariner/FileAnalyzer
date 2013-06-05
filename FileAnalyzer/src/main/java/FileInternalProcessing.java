@@ -3,13 +3,13 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class FileInternalProcessing {
-    public String fileName;
+    private String fileName;
     private String delimiterForSeparatingWords = "[ .,;:?!\\|\\-~'\\\\\"*/\\^()_+=@#$%&*`{}\\[\\]]+";
-    private String[] tokens;
-    Map<String, Integer> wordsMap = new TreeMap<String, Integer>();
+    private String[] wordInLine;
+    private Map<String, Integer> wordsMap = new TreeMap<String, Integer>();
 
-    public String[] getTokens() {
-        return tokens;
+    public String[] getWordInLine() {
+        return wordInLine;
     }
 
     public FileInternalProcessing(String fileName) {
@@ -17,28 +17,33 @@ public class FileInternalProcessing {
     }
 
     public void workWithFile() {
+        BufferedReader br = null;
         try {
-            FileInputStream fis = new FileInputStream(fileName);
-            DataInputStream in = new DataInputStream(fis);
-
-            readFileLineByLine(in);
-
-            in.close();
+            br = new BufferedReader(new FileReader(fileName));
+            readFileLineByLine(br);
         } catch (IOException e) {
             System.out.println("Something went wrong with the file opening, please try again\n");
             e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) {
+                    br.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    private void readFileLineByLine(DataInputStream in) throws IOException {
+    private void readFileLineByLine(BufferedReader br) throws IOException {
         String line;
-        while ((line = in.readLine()) != null) {
-            tokens = line.split(delimiterForSeparatingWords);
-            for (int i =0; i < tokens.length; i ++) {
-                if(wordsMap.containsKey(tokens[i])) {
-                    wordsMap.put(tokens[i], wordsMap.get(tokens[i]) + 1);
+        while ((line = br.readLine()) != null) {
+            wordInLine = line.split(delimiterForSeparatingWords);
+            for (int i =0; i < wordInLine.length; i ++) {
+                if(wordsMap.containsKey(wordInLine[i])) {
+                    wordsMap.put(wordInLine[i], wordsMap.get(wordInLine[i]) + 1);
                 } else {
-                    wordsMap.put(tokens[i], 1);
+                    wordsMap.put(wordInLine[i], 1);
                 }
             }
         }

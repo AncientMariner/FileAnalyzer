@@ -2,14 +2,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnit44Runner;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.DataInputStream;
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(MockitoJUnit44Runner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class FileInputProcessingTest {
     @Mock DataInputStream dataInputStream;
     @InjectMocks
@@ -19,9 +19,9 @@ public class FileInputProcessingTest {
     public void readLineTest() throws IOException {
         fileInternalProcessing.workWithFile();
 
-        assertEquals(fileInternalProcessing.getTokens()[0], "leo");
-        assertEquals(fileInternalProcessing.getTokens()[1], "tiger");
-        assertEquals(fileInternalProcessing.getTokens()[2], "cat");
-        assertEquals(fileInternalProcessing.getTokens()[3], "dog");
+        assertEquals(fileInternalProcessing.getWordInLine()[0], "leo");
+        assertEquals(fileInternalProcessing.getWordInLine()[1], "tiger");
+        assertEquals(fileInternalProcessing.getWordInLine()[2], "cat");
+        assertEquals(fileInternalProcessing.getWordInLine()[3], "dog");
     }
 }
