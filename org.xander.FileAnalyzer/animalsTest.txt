@@ -1,11 +1,8 @@
 animals
 
-cat
-dog
-cat
+cat dog
+cat - dog-dog
 dog
 
-croco
-parrot
-leo
-tiger
+croco, parrot. dog? cat
+leo tiger cat dog
