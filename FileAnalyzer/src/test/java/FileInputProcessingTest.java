@@ -1,19 +1,18 @@
+import static org.junit.Assert.assertEquals;
+
+import java.io.DataInputStream;
+import java.io.IOException;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-
-import static org.junit.Assert.assertEquals;
-
 @RunWith(MockitoJUnitRunner.class)
 public class FileInputProcessingTest {
     @Mock DataInputStream dataInputStream;
-    @InjectMocks
-    FileInternalProcessing fileInternalProcessing = new FileInternalProcessing("animalsTest.txt");
+    @InjectMocks FileInternalProcessing fileInternalProcessing = new FileInternalProcessing("animalsTest.txt");
 
     @Test
     public void readLineTest() throws IOException {

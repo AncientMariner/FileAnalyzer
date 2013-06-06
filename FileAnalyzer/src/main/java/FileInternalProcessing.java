@@ -4,16 +4,16 @@ import java.util.TreeMap;
 
 public class FileInternalProcessing {
     private String fileName;
-    private String delimiterForSeparatingWords = "[ .,;:?!\\|\\-~'\\\\\"*/\\^()_+=@#$%&*`{}\\[\\]]+";
+    private String delimitersForSeparatingWords = "[ .,;:?!\\|\\-~'\\\\\"*/\\^()_+=@#$%&*`{}\\[\\]]+";
     private String[] wordsInLine;
     private Map<String, Integer> wordsMap = new TreeMap<String, Integer>();
 
-    public String[] getWordsInLine() {
-        return wordsInLine;
-    }
-
     public FileInternalProcessing(String fileName) {
         this.fileName = fileName;
+    }
+
+    public String[] getWordsInLine() {
+        return wordsInLine;
     }
 
     public void workWithFile() {
@@ -38,9 +38,9 @@ public class FileInternalProcessing {
     private void readFileLineByLine(BufferedReader br) throws IOException {
         String line;
         while ((line = br.readLine()) != null) {
-            wordsInLine = line.split(delimiterForSeparatingWords);
-            for (int i =0; i < wordsInLine.length; i++) {
-                if(wordsMap.containsKey(wordsInLine[i])) {
+            wordsInLine = line.split(delimitersForSeparatingWords);
+            for (int i = 0; i < wordsInLine.length; i++) {
+                if (wordsMap.containsKey(wordsInLine[i])) {
                     wordsMap.put(wordsInLine[i], wordsMap.get(wordsInLine[i]) + 1);
                 } else {
                     wordsMap.put(wordsInLine[i], 1);
@@ -54,7 +54,7 @@ public class FileInternalProcessing {
         wordsMap.remove("");
     }
 
-    public String buildAStringFromMap() {
+    public String buildStringFromMap() {
         StringBuilder sb = new StringBuilder();
         sb.append("Word frequency :\n");
         for (Map.Entry<String, Integer> entry : wordsMap.entrySet()) {
