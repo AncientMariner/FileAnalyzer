@@ -5,11 +5,17 @@ import java.util.TreeMap;
 public class FileInternalProcessing {
     private String fileName;
     private String delimiterForSeparatingWords = "[ .,;:?!\\|\\-~'\\\\\"*/\\^()_+=@#$%&*`{}\\[\\]]+";
-    private String[] wordsInLine;
-    private Map<String, Integer> wordsMap = new TreeMap<String, Integer>();
 
     public String[] getWordsInLine() {
         return wordsInLine;
+    }
+
+    private String[] wordsInLine;
+
+    private Map<String, Integer> wordsMap = new TreeMap<String, Integer>();
+
+    public Map<String, Integer> getWordsMap() {
+        return wordsMap;
     }
 
     public FileInternalProcessing(String fileName) {
@@ -54,41 +60,7 @@ public class FileInternalProcessing {
         wordsMap.remove("");
     }
 
-    public void showTheResults(String outputDataGoesTo) {
-        if(outputDataGoesTo.equals("console")) {
-            printTheFrequencyResultToConsole();
-        } else if (outputDataGoesTo.equals("file")){
-            printTheFrequencyResultToFile();
-        } else {
-            System.out.println("Please specify the output destination correctly");
-        }
-    }
-
-
-    public void printTheFrequencyResultToConsole() {
-        System.out.println("Word frequency :");
-        for (Map.Entry<String, Integer> entry : wordsMap.entrySet()) {
-            System.out.println(" " + entry.getKey() + "\t -- \t" + entry.getValue());
-        }
-    }
-
-    private void printTheFrequencyResultToFile() {
-        File outputFile = new File("result.txt");
-        try {
-            if (!outputFile.exists()) {
-                outputFile.createNewFile();
-            }
-            FileWriter fw = new FileWriter(outputFile.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(buildAStringFromMap());
-            bw.close();
-        } catch (IOException e) {
-            System.out.println("Something went wrong with the file creation, please try again");
-            e.printStackTrace();
-        }
-    }
-
-    private String buildAStringFromMap() {
+    public String buildAStringFromMap() {
         StringBuilder sb = new StringBuilder();
         sb.append("Word frequency :\n");
         for (Map.Entry<String, Integer> entry : wordsMap.entrySet()) {
@@ -97,4 +69,3 @@ public class FileInternalProcessing {
         return sb.toString();
     }
 }
-
