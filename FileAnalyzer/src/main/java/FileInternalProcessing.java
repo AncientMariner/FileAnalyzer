@@ -5,14 +5,12 @@ import java.util.TreeMap;
 public class FileInternalProcessing {
     private String fileName;
     private String delimiterForSeparatingWords = "[ .,;:?!\\|\\-~'\\\\\"*/\\^()_+=@#$%&*`{}\\[\\]]+";
+    private String[] wordsInLine;
+    private Map<String, Integer> wordsMap = new TreeMap<String, Integer>();
 
     public String[] getWordsInLine() {
         return wordsInLine;
     }
-
-    private String[] wordsInLine;
-
-    private Map<String, Integer> wordsMap = new TreeMap<String, Integer>();
 
     public FileInternalProcessing(String fileName) {
         this.fileName = fileName;
