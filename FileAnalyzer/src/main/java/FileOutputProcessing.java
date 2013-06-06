@@ -4,12 +4,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileOutputProcessing {
+    private String outputResultFile = "result.txt";
     public void printTheFrequencyResultToConsole(String resultToConsole) {
         System.out.println(resultToConsole);
     }
 
     public void printTheFrequencyResultToFile(String resultToFile) {
-        File outputFile = new File("result.txt");
+        File outputFile = new File(outputResultFile);
         try {
             if (!outputFile.exists()) {
                 outputFile.createNewFile();

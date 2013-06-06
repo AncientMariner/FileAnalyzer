@@ -7,8 +7,12 @@ public class FileInputProcessing {
             FileInternalProcessing fileInternalProcessing = new FileInternalProcessing(fileToOpen);
             fileInternalProcessing.workWithFile();
 
-            String resultToPrint = fileInternalProcessing.buildStringFromMap();
-            printTheResults(outputDataGoesTo, resultToPrint);
+            if(outputDataGoesTo.equals("console") || outputDataGoesTo.equals("file")) {
+                String resultToPrint = fileInternalProcessing.buildStringFromMap();
+                printTheResults(outputDataGoesTo, resultToPrint);
+            } else {
+                System.out.println("Please specify the output destination correctly");
+            }
         } else {
             System.out.println("Be sure to specify filename then parameter for output, such as \"<name of the executable class> <input_file> <parameter> (console or file)\"");
         }
@@ -20,8 +24,6 @@ public class FileInputProcessing {
             fileOutputProcessing.printTheFrequencyResultToConsole(result);
         } else if (outputDataGoesTo.equals("file")) {
             fileOutputProcessing.printTheFrequencyResultToFile(result);
-        } else {
-            System.out.println("Please specify the output destination correctly");
         }
     }
 }
