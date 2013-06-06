@@ -10,7 +10,7 @@ public class FileInputProcessing {
             String resultToPrint = fileInternalProcessing.buildStringFromMap();
             printTheResults(outputDataGoesTo, resultToPrint);
         } else {
-            System.out.println("Be sure to specify filename than parameter for output, such as \"<name of the executable class> <input_file> <parameter> (console or file)\"");
+            System.out.println("Be sure to specify filename then parameter for output, such as \"<name of the executable class> <input_file> <parameter> (console or file)\"");
         }
     }
 
