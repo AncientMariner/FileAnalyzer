@@ -22,7 +22,7 @@ public class FileInternalProcessing {
             br = new BufferedReader(new FileReader(fileName));
             readFileLineByLine(br);
         } catch (IOException e) {
-            System.out.println("Something went wrong with the file opening, please try again\n");
+            System.out.println("There is an error with the file opening, please try again\n");
             e.printStackTrace();
         } finally {
             try {
@@ -30,6 +30,7 @@ public class FileInternalProcessing {
                     br.close();
                 }
             } catch (IOException e) {
+                System.out.println("There is an error with the file closing, please try again\n");
                 e.printStackTrace();
             }
         }

@@ -3,13 +3,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class FileOutputProcessing {
-    private String outputResultFile = "result.txt";
-    public void printTheFrequencyResultToConsole(String resultToConsole) {
-        System.out.println(resultToConsole);
-    }
+public class FileOutputProcessing implements  Output{
+    @Override
+    public void print(String output) {
+        String outputResultFile = "result.txt";
 
-    public void printTheFrequencyResultToFile(String resultToFile) {
         File outputFile = new File(outputResultFile);
         BufferedWriter bw = null;
         try {
@@ -18,9 +16,9 @@ public class FileOutputProcessing {
             }
             FileWriter fw = new FileWriter(outputFile.getAbsoluteFile());
             bw = new BufferedWriter(fw);
-            bw.write(resultToFile);
+            bw.write(output);
         } catch (IOException e) {
-            System.out.println("Something went wrong with the file creation, please try again");
+            System.out.println("There is an error with the output file creation, please try again");
             e.printStackTrace();
         } finally {
             try {
@@ -28,6 +26,7 @@ public class FileOutputProcessing {
                     bw.close();
                 }
             } catch (IOException e) {
+                System.out.println("There is an error with the output file closing, please try again");
                 e.printStackTrace();
             }
         }
