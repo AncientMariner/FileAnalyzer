@@ -14,10 +14,6 @@ public class FileInternalProcessing {
 
     private Map<String, Integer> wordsMap = new TreeMap<String, Integer>();
 
-    public Map<String, Integer> getWordsMap() {
-        return wordsMap;
-    }
-
     public FileInternalProcessing(String fileName) {
         this.fileName = fileName;
     }

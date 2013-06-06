@@ -1,6 +1,6 @@
 public class FileInputProcessing {
     public static void main( String[] args ) {
-        if(args != null &&  args.length == 2) {
+        if(args != null && args.length == 2) {
             String fileToOpen = args[0];
             String outputDataGoesTo = args[1];
 
