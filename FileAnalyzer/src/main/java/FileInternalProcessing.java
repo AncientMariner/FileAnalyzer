@@ -22,16 +22,14 @@ public class FileInternalProcessing {
             br = new BufferedReader(new FileReader(fileName));
             readFileLineByLine(br);
         } catch (IOException e) {
-            System.out.println("There is an error with the file opening, please try again\n");
-            e.printStackTrace();
+            throw new FileException("There is an error with the file opening, please try again");
         } finally {
             try {
                 if (br != null) {
                     br.close();
                 }
             } catch (IOException e) {
-                System.out.println("There is an error with the file closing, please try again\n");
-                e.printStackTrace();
+                throw new FileException("There is an error with the file closing, please try again");
             }
         }
     }
@@ -55,7 +53,7 @@ public class FileInternalProcessing {
         wordsMap.remove("");
     }
 
-    public String buildStringFromMap() {
+    public String buildString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Word frequency :\n");
         for (Map.Entry<String, Integer> entry : wordsMap.entrySet()) {

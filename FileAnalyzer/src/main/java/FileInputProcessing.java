@@ -1,5 +1,7 @@
-public class FileInputProcessing {
+import java.util.HashMap;
+import java.util.Map;
 
+public class FileInputProcessing {
     public static void main(String[] args) {
         if (args != null && args.length == 2) {
             String fileToOpen = args[0];
@@ -9,7 +11,8 @@ public class FileInputProcessing {
 
             FileInternalProcessing fileInternalProcessing = new FileInternalProcessing(fileToOpen);
             fileInternalProcessing.workWithFile();
-            String resultToPrint = fileInternalProcessing.buildStringFromMap();
+
+            String resultToPrint = fileInternalProcessing.buildString();
 
             printTheResults(output, resultToPrint);
         } else {
@@ -18,18 +21,14 @@ public class FileInputProcessing {
     }
 
     private static Output selectOutputSource(String outputDataGoesTo) {
-        if (outputDataGoesTo.equals("console") || outputDataGoesTo.equals("file")) {
-            Output outputProcessing = null;
-            if (outputDataGoesTo.equals("console")) {
-                outputProcessing = new FileOutputProcessing();
-            } else if (outputDataGoesTo.equals("file")) {
-                outputProcessing = new ConsoleOutputProcessing();
-            }
-            return outputProcessing;
-        } else {
-            System.out.println("Please specify the output destination correctly\n");
-            throw new RuntimeException();
-        }
+        Map<String, Output> outPutSources = new HashMap<String, Output>();
+        outPutSources.put("console", new ConsoleOutputProcessing());
+        outPutSources.put("file", new FileOutputProcessing());
+
+        Output outputProcessing = outPutSources.get(outputDataGoesTo);
+        if(outputProcessing == null) throw new FileException("Please specify the output destination correctly");
+
+        return outputProcessing;
     }
 
     private static void printTheResults(Output outputProcessing, String result) {

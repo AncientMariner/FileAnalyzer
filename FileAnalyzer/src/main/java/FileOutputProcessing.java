@@ -18,16 +18,14 @@ public class FileOutputProcessing implements  Output{
             bw = new BufferedWriter(fw);
             bw.write(output);
         } catch (IOException e) {
-            System.out.println("There is an error with the output file creation, please try again");
-            e.printStackTrace();
+            throw new FileException("There is an error with the output file creation, please try again");
         } finally {
             try {
                 if (bw != null) {
                     bw.close();
                 }
             } catch (IOException e) {
-                System.out.println("There is an error with the output file closing, please try again");
-                e.printStackTrace();
+                throw new FileException("There is an error with the output file closing, please try again");
             }
         }
     }
