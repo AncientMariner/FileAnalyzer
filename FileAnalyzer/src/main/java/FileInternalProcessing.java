@@ -22,14 +22,14 @@ public class FileInternalProcessing {
             br = new BufferedReader(new FileReader(fileName));
             readFileLineByLine(br);
         } catch (IOException e) {
-            throw new FileException("There is an error with the file opening, please try again");
+            throw new FileProcessingException("There is an error with the file opening, please try again");
         } finally {
             try {
                 if (br != null) {
                     br.close();
                 }
             } catch (IOException e) {
-                throw new FileException("There is an error with the file closing, please try again");
+                throw new FileProcessingException("There is an error with the file closing, please try again");
             }
         }
     }

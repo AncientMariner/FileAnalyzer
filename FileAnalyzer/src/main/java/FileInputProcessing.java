@@ -26,7 +26,7 @@ public class FileInputProcessing {
         outPutSources.put("file", new FileOutputProcessing());
 
         Output outputProcessing = outPutSources.get(outputDataGoesTo);
-        if(outputProcessing == null) throw new FileException("Please specify the output destination correctly");
+        if(outputProcessing == null) throw new FileProcessingException("Please specify the output destination correctly");
 
         return outputProcessing;
     }
