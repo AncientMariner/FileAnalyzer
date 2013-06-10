@@ -38,7 +38,7 @@ public class FileInternalProcessing {
         String line;
         while ((line = br.readLine()) != null) {
             wordsInLine = line.split(delimitersForSeparatingWords);
-            for (int i = 0; i < wordsInLine.length; i++) {
+            for (int i = 0; i < wordsInLine.length && wordsInLine[i].length() > 0 ; i++) {
                 if (wordsMap.containsKey(wordsInLine[i])) {
                     wordsMap.put(wordsInLine[i], wordsMap.get(wordsInLine[i]) + 1);
                 } else {
@@ -46,11 +46,6 @@ public class FileInternalProcessing {
                 }
             }
         }
-        removeUnnecessarySymbols();
-    }
-
-    private void removeUnnecessarySymbols() {
-        wordsMap.remove("");
     }
 
     public String buildString() {
